@@ -20,7 +20,7 @@ def topics(request):
 def topic(request, topic_id):
     t = Topic.objects.get(id=topic_id)
 
-    if topic.owner != request.user:
+    if t.owner != request.user:
         raise Http404
     
     entries = Entry.objects.filter(topic=t).order_by('-date_added')
